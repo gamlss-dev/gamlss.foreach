@@ -1,15 +1,16 @@
 Package: gamlss.foreach
-Type: Package
-Title:  Parallel Computations for Distributional Regression 
+Title:  Parallel Computations for Distributional Regression
 Version: 1.1-9
-Date: 2023-05-09
-Author: Mikis Stasinopoulos [aut, cre, cph], Bob Rigby [aut], Fernanda De Bastiani [aut]
-Description: Computational intensive calculations for Generalized Additive Models for Location Scale and Shape, <doi:10.1111/j.1467-9876.2005.00510.x>. 
-Maintainer: Mikis Stasinopoulos <d.stasinopoulos@londonmet.ac.uk>
-LazyLoad: yes
-Depends: R (>= 2.2.1), gamlss, foreach, doParallel, methods
-Imports: gamlss.data, gamlss.dist, glmnet, ggplot2
+Date: 2023-11-02
+Authors@R: c(person("Mikis", "Stasinopoulos", role = c("aut", "cre", "cph"), 
+             email = "d.stasinopoulos@gre.ac.uk", comment = c(ORCID = "0000-0003-2407-5704")),
+           person("Robert", "Rigby", role = "aut", email = "r.rigby@gre.ac.uk", comment = c(ORCID = "0000-0003-3853-1707")),
+           person("Fernanda", "De Bastiani", role = "aut", email = "fernandadebastiani@gmail.com", comment = c(ORCID = "0000-0001-8532-639X"))
+           )
+Description: Computationally intensive calculations for Generalized Additive Models for Location Scale and Shape, <doi:10.1111/j.1467-9876.2005.00510.x>. 
 License: GPL-2 | GPL-3
 URL: https://www.gamlss.com/
-NeedsCompilation: no
-Packaged: 2021-03-04 15:27:15 UTC; dimitriosstasinopoulos
+BugReports: https://github.com/gamlss-dev/gamlss.foreach/issues
+Depends: R (>= 2.2.1), gamlss, foreach, doParallel, methods
+Imports: gamlss.data, gamlss.dist, glmnet, ggplot2
+LazyLoad: yes
