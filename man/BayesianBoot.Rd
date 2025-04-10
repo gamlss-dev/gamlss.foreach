@@ -60,7 +60,7 @@ pp, 248-273, SAGE Publications Sage India: New Delhi, India. \doi{10.1177/147108
 (see also \url{https://www.gamlss.com/}).
 }
 \author{
-Mikis Stasinopoulos, \email{d.stasinopoulos@londonmet.ac.uk}
+Mikis Stasinopoulos, \email{d.stasinopoulos@gre.ac.uk}
 }
 %\note{
 %%  ~~further notes~~

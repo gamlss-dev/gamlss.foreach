@@ -2,6 +2,7 @@
 #--------------------------------------------------------------------------
 # bootstap centiles
 # Friday, December 8, 2006 at 17:46
+# last change 10 April 2025
 # new version based on forreach on 2019 Aug 10 MS
 # MS PA + BR 
 #--------------------------------------------------------------------------
@@ -57,7 +58,7 @@ if (calibration){
         original <- centiles.pred(obj, xname=xname, cent=centile, xvalues=xvalues, power=power, data=data, ...)
 ##  foreach
   res <- foreach(i = 1:B, .packages=c("gamlss"), .errorhandling ="remove") %dopar% {           
-     bootstrap_data <- data[sample(nrow(data),nrow(data),replace=T),]
+     bootstrap_data <- data[sample.int(nrow(data),nrow(data),replace=TRUE),]
        thecall$data <- bootstrap_data
                  m1 <- eval(thecall) # how to catch?
   if (calibration){
@@ -119,11 +120,11 @@ summary.centiles.boot <- function(object, fun="mean", ...)
           B <- object$trueB
    len.cent <- object$cent
 #      unres <- unlist(object$boot) 
-      unres <- if(object$failed==0) unlist(object$boot) else unlist(object$boot[-object$failed])
+      # unres <- if(object$failed==0) unlist(object$boot) else unlist(object$boot[-object$failed]) # Mikis 10-April 2025
+      unres <- unlist(object$boot) 
       fact1 <- gl(ll,1,length=ll*B)
       funbb <- matrix(tapply(unres,fact1,fun,na.rm=TRUE,... ), ncol=length(object$cent)+1)
 #      funbb <- matrix(tapply(unres,fact1,fun, ... ), ncol=length(object$cent)+1)
-
   funbb[,1] <- object$boot0[,1]
 #Defines the column and rownames of the funbb matrix, by using the names of the 1st list of the obj$boot
    colnames(funbb) = colnames(object$boot[[1]]) 
@@ -132,7 +133,7 @@ summary.centiles.boot <- function(object, fun="mean", ...)
 }
 #----------------------------------------------------------------------------
 #----------------------------------------------------------------------------
- plot.centiles.boot <- function(x, 
+plot.centiles.boot <- function(x, 
                           quantiles = c(0.025, 0.975),
                                ylab = NULL,
                                xlab = NULL,
@@ -142,7 +143,8 @@ summary.centiles.boot <- function(object, fun="mean", ...)
                            col.cent = "darkred",
                              col.se = "orange", 
                          col.shaded = "gray",
-                         lwd.center = 1.5,   
+                         lwd.center = 1.5,
+                         line = TRUE,
                                 ...)  
 {
 #----------------------------------------------------------------------------
@@ -173,7 +175,7 @@ if (identical(scheme, "shaded"))
   for (j in 2:(length(x$cent)+1))
   {
     se.shaded(x=c1[,1],  y1=c1[,j], y2= c2[,j] )
-    lines(locationE[,1], locationE[,j], col=col.cent, lwd = lwd.center)
+if(line)  lines(locationE[,1], locationE[,j], col=col.cent, lwd = lwd.center)
     if (original) lines(x$boot0[,1], x$boot0[,j], col="black")
   }
 }
@@ -182,7 +184,7 @@ else
   for (j in 2:(length(x$cent)+1))
   {  
     if (original) lines(x$boot0[,1], x$boot0[,j], col="black")
-    lines(locationE[,1], locationE[,j], col=col.cent, lwd=lwd.center)
+    if(line)    lines(locationE[,1], locationE[,j], col=col.cent, lwd=lwd.center)
     lines(c1[,1], c1[,j], col=col.se)
     lines(c2[,1], c2[,j], col=col.se)
   }

@@ -22,8 +22,8 @@ The DESCRIPTION file:
 \packageIndices{gamlss.foreach}
 }
 \author{
-Mikis Stasinopoulos, \email{d.stasinopoulos@londonmet.ac.uk},and Bob Rigby 
-            \email{r.rigby@londonmet.ac.uk}  
+Mikis Stasinopoulos, \email{d.stasinopoulos@gre.ac.uk},and Bob Rigby 
+            \email{r.rigby@gre.ac.uk}  
             
 Maintainer: Mikis Stasinopoulos, \email{d.stasinopoulos@londonmet.ac.uk} 
 }

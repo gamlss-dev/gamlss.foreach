@@ -22,7 +22,8 @@ centiles.boot(obj, data = NULL, xname = NULL, xvalues = NULL,
 \method{plot}{centiles.boot}(x, quantiles = c(0.025, 0.975), 
        ylab = NULL, xlab = NULL, location = "median", original = FALSE, 
        scheme = c("shaded", "lines"), col.cent = "darkred", 
-       col.se = "orange", col.shaded = "gray", lwd.center = 1.5, ...)  
+       col.se = "orange", col.shaded = "gray", lwd.center = 1.5,
+       line = TRUE,...)  
              
 }
 \arguments{
@@ -50,6 +51,7 @@ centiles.boot(obj, data = NULL, xname = NULL, xvalues = NULL,
 \item{col.se}{the colour of the standard errors for the \code{"lines"} scheme with default \code{"orange"}}
 \item{col.shaded}{the colour of the standard errors for the \code{"shaded"} scheme with default "gray"}
   \item{lwd.center}{the width of the central line}
+   \item{line}{whether to plot the median lines \code{TRUE} or just the CI \code{FALSE}.} 
 }
 \details{This function is designed for bootstrapping centiles curves. 
        It can be used to provide bootstrap means, standard deviations and quantiles, 
@@ -98,7 +100,7 @@ pp, 248-273, SAGE Publications Sage India: New Delhi, India. \doi{10.1177/147108
 
 }
 
-\author{Mikis Stasinopoulos, \email{d.stasinopoulos@londonmet.ac.uk}, Bob Rigby 
+\author{Mikis Stasinopoulos, \email{d.stasinopoulos@gre.ac.uk}, Bob Rigby 
             \email{r.rigby@londonmet.ac.uk} and Calliope Akantziliotou}
 \note{See example below of how to use the function when a power transformation is used for the x-variable
 

@@ -24,14 +24,14 @@
 ############################################################
 # TO DO
 # i)    It needs testing on whether produce the right coefficients 
-#       It looks that the coef fitted values and residuals are OK
-# ii)   put stanard errors  OK 
+#       It looks that the coefficient fitted values and residuals are OK
+# ii)   put standard errors  OK 
 # iii)  put local AIC       OK 
 # iv)   add weights         OK needs testing
 # v)    add supervised      Not yet
-# vi)   add argument to do svd outside (NO maybe not appropriate) 
-# vii)  add foreach        needs testing (I am not sute that spead up things) 
-# viii) prediction         OK (need more checking)
+# vi)   add argument to do  svd outside (NO maybe not appropriate) 
+# vii)  add foreach         needs testing (I am not sute that spead up things) 
+# viii) prediction          OK (need more checking)
 #############################################################
 ############################################################# 
 fitPCR<- function( x = NULL,      # the x matrix

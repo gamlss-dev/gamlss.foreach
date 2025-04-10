@@ -14,7 +14,7 @@ The two functions differ on the way PCR is implemented within the GAMLSS algorit
 In the function \code{pc()} the singular value decomposition of the scaled x's is done in the beginning and different re-weighted linear models are fitted on the PC scores see  algorithm  1 in Stasinopoulos et al. (2021). In the function \code{pcr()} at each iteration a new weighted PCR is performed using the function \code{fitPCR()} see algorithm  2 in Stasinopoulos et al. (2021). 
 
 
-The functions \code{gamlss.pcr()} and \code{gamlss.pc()} are supporting functions. The  are not intended to be called directly by users. The function \code{gamlss.pc()} is using the linear model function \code{lm()} to fit the first principal components while the function code{gamlss.pcr()} uses \code{fitPCR()}.
+The functions \code{gamlss.pcr()} and \code{gamlss.pc()} are supporting functions. The  are not intended to be called directly by users. The function \code{gamlss.pc()} is using the linear model function \code{lm()} to fit the first principal components while the function \code{gamlss.pcr()} uses \code{fitPCR()}.
 
 The function \code{getSVD()} creates a singular value decomposition of a design matrix \code{X} using the \R{} function \code{La.svd()}. 
 }
@@ -105,7 +105,7 @@ Stasinopoulos, M. D., Rigby, R. A., Georgikopoulos N., and De Bastiani F., (2021
 }
 
 \author{
-Mikis Stasinopoulos \email{d.stasinopoulos@londonmet.ac.uk}, Bob Rigby 
+Mikis Stasinopoulos \email{d.stasinopoulos@gre.ac.uk}, Bob Rigby 
 }
 \note{ Do not forget to use \code{registerDoParallel(cores = NUMBER)} or
 \code{cl <- makeCluster(NUMBER)} and 
