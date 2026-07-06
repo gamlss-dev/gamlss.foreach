@@ -1,8 +1,7 @@
-
 # functions
 export(centiles.boot, pc, gamlss.pc, getSVD, fitRolling, 
        which.Data.Corr, which.yX.Corr, fitPCR, pcr, gamlss.pcr,
-       BayesianBoot, NonParametricBoot, fitQR)
+       BayesianBoot, NonParametricBoot, fitQR, cross_val, cross_val2)
 
 import(stats)
 import(gamlss)
@@ -10,6 +9,7 @@ import(gamlss.data)
 import(foreach)
 import(doParallel)
 import(glmnet)
+import(matrixStats)
 importFrom(gamlss.dist, dNO, qNO, pNO, NO)
 importFrom("methods", "is")
 importFrom(graphics, lines,  plot)
@@ -22,6 +22,8 @@ importFrom("graphics", "par")
 importFrom("graphics", "rug")
 importFrom("utils", "head", "tail")
 importFrom("ggplot2", "ggplot", "geom_line", "geom_point")
+importFrom("gamlss2", "response_name")
+#importFrom(", "rowMeans2", "rowMeans","rowSds")
 ################################################################################
 S3method(print, Bayesian.boot)
 S3method(summary, Bayesian.boot)
@@ -43,3 +45,5 @@ S3method(fitted, PCR)
 S3method(summary, PCR)
 S3method(predict, PCR)
 S3method(vcov, PCR)
+S3method(resid, CV_gamlss)
+S3method(summary, mult_CV_gamlss)
