@@ -2,10 +2,14 @@
 ################################################################################
 ################################################################################
 ################################################################################
-# Comments
-# i) the function fitQR() is the latest and its in gamlss.foreach
-# ii) the function qreg() is the one I used in GAMLSS_quantile_regression.Rnw
-# iii) fitQR() is general in the sense it can take any formula including smoothing 
+# Comments : fit quantile regression 
+# i)   the function fitQR() is the latest and its in gamlss.foreach
+# ii)  the function qreg() is the one I used in GAMLSS_quantile_regression.Rnw
+# iii) fitQR() is general in the sense it can take any formula including 
+#      smoothing 
+################################################################################
+################################################################################
+################################################################################
 ################################################################################
 fitQR <- function(formula, data, quantile=c(0.5), ...)
 {
