@@ -487,11 +487,11 @@ rand_sample <- if (is.null(rand)) sample(K.fold, N, replace=TRUE) else rand
                  .inorder = FALSE)%dopar%
     {
       if (print) cat("the", i, "fold", "\n" )     
-      ii <- Index[rand_sample==i]
-      CV_data <- as.data.frame(datA[ii,])
-      names(CV_data) <- names(datA)
-      mooo <- update(model, data= CV_data, trace=F ) 
-      list(resid=resid(mooo), dev.Incr = deviance(mooo, sum=FALSE)) 
+            ii <- Index[rand_sample==i]
+       CV_data <- as.data.frame(datA[ii,])
+names(CV_data) <- names(datA)
+          mooo <- update(model, data= CV_data, trace=F ) 
+list(resid=resid(mooo), dev.Incr =  deviance_Incr(mooo)) 
     } 
 ## FOREACH FINISHED
 for (i in 1:K.fold)
@@ -522,19 +522,19 @@ for (i in 1:K.fold)
 # increments   
 # This function is not needed any more because deviavce(., sum=FALSE) 
 # is doing similar job
-# deviance_Incr <- function(model, newdata=NULL)
-# {
-#   if (!is(model, "gamlss2")) stop("This works for gamlss2 objects only")
-#   DINC <- if (is.null(newdata))
-#   {
-#     -2*model$family$pdf(model.response(model.frame(model)), fitted(model, type="parameter"), 
-#                         log=TRUE)  
-#   } else 
-#   {
-#    -2*model$family$pdf(y=unlist(newdata[response_name(model)]), par=predict(model, type="parameter", newdata= newdata), log=TRUE)
-#   } 
-#   DINC
-# }
+ deviance_Incr <- function(model, newdata=NULL)
+ {
+   if (!is(model, "gamlss2")) stop("This works for gamlss2 objects only")
+   DINC <- if (is.null(newdata))
+   {
+     -2*model$family$pdf(model.response(model.frame(model)), fitted(model, type="parameter"),
+                         log=TRUE)
+   } else
+   {
+    -2*model$family$pdf(y=unlist(newdata[response_name(model)]), par=predict(model, type="parameter", newdata= newdata), log=TRUE)
+   }
+   DINC
+ }
 ################################################################################
 ################################################################################
 ################################################################################
