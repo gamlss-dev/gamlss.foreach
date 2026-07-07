@@ -1,7 +1,8 @@
 # functions
 export(centiles.boot, pc, gamlss.pc, getSVD, fitRolling, 
        which.Data.Corr, which.yX.Corr, fitPCR, pcr, gamlss.pcr,
-       BayesianBoot, NonParametricBoot, fitQR, cross_val, cross_val2)
+       BayesianBoot, NonParametricBoot, fitQR, cross_val, cross_val2,
+       mult_cross_val)
 
 import(stats)
 import(gamlss)
@@ -46,4 +47,3 @@ S3method(summary, PCR)
 S3method(predict, PCR)
 S3method(vcov, PCR)
 S3method(resid, CV_gamlss)
-S3method(summary, mult_CV_gamlss)

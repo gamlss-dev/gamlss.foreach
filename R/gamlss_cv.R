@@ -491,7 +491,7 @@ rand_sample <- if (is.null(rand)) sample(K.fold, N, replace=TRUE) else rand
       CV_data <- as.data.frame(datA[ii,])
       names(CV_data) <- names(datA)
       mooo <- update(model, data= CV_data, trace=F ) 
-      list(resid=resid(mooo), dev.Incr = deviance_Incr(mooo)) 
+      list(resid=resid(mooo), dev.Incr = deviance(mooo, sum=FALSE)) 
     } 
 ## FOREACH FINISHED
 for (i in 1:K.fold)
@@ -505,7 +505,7 @@ for (i in 1:K.fold)
   out <- list(model=model, 
               K = K.fold,
               orig.resid = resid(model),   
-               orig.incr = deviance_Incr(model), 
+               orig.incr = deviance(model, sum=FALSE), 
                 cv.resid = residuals,   
                  cv.incr = dev_Incr, 
             cv.deviance  = sum(dev_Incr),
@@ -520,19 +520,21 @@ for (i in 1:K.fold)
 # this is a general function to obtained the deviance increments for any 
 # `gamlss2` object. It takes a `gamlss2` object and creates a vector of deviance 
 # increments   
-deviance_Incr <- function(model, newdata=NULL)
-{
-  if (!is(model, "gamlss2")) stop("This works for gamlss2 objects only")
-  DINC <- if (is.null(newdata))
-  {
-    -2*model$family$pdf(model.response(model.frame(model)), fitted(model, type="parameter"), 
-                        log=TRUE)  
-  } else 
-  {
-   -2*model$family$pdf(y=unlist(newdata[response_name(model)]), par=predict(model, type="parameter", newdata= newdata), log=TRUE)
-  } 
-  DINC
-}
+# This function is not needed any more because deviavce(., sum=FALSE) 
+# is doing similar job
+# deviance_Incr <- function(model, newdata=NULL)
+# {
+#   if (!is(model, "gamlss2")) stop("This works for gamlss2 objects only")
+#   DINC <- if (is.null(newdata))
+#   {
+#     -2*model$family$pdf(model.response(model.frame(model)), fitted(model, type="parameter"), 
+#                         log=TRUE)  
+#   } else 
+#   {
+#    -2*model$family$pdf(y=unlist(newdata[response_name(model)]), par=predict(model, type="parameter", newdata= newdata), log=TRUE)
+#   } 
+#   DINC
+# }
 ################################################################################
 ################################################################################
 ################################################################################
@@ -579,12 +581,24 @@ for (i in (1:R)) {
 ################################################################################
 ################################################################################
 # we need summary and plot for a   "mult_CV_gamlss" object 
-summary.mult_CV_gamlss <- function(object, type=c("resid", "incr"), ...)
+from_list2mat <- function(object, type=c("resid", "incr"), ...)
 {
+  resid_CV_gamlss <- function(obj, type=c("resid", "incr"))
+  {
+    if (!(is(obj, "CV_gamlss"))) stop("not a CV_gamlss object")
+    type <- match.arg(type)
+    res <-   if (type=="resid") obj$cv.resid else obj$cv.incr 
+    return(res)
+  }  
   type <- match.arg(type)  
-    pp <- sapply(as.list(object), resid.CV_gamlss, type)
+    pp <- sapply(as.list(object), resid_CV_gamlss, type)
 pp
 }
+################################################################################
+################################################################################
+################################################################################
+################################################################################
+
 # matplot(summary(PP, type="incr"))
 # matplot(summary(PP, type="resid"))
 # pairs(summary(PP, type="resid"))
